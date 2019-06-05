@@ -1,42 +1,39 @@
 package main
 
-import (
-	"strings"
-)
-
-func bfs (dict *map[string]bool, start string, end string) []string {
-	var queue []string
+func bfs (dict map[string]node, start string, end string) []string {
+	var queue []node
 	var path []string
 
-
-	dict[start] = true
-
-	queue = append(queue,start)
-	path = append(queue, start)
+	queue = append(queue,dict[start])
+	path = append(path, end)
 
 	for len(queue) > 0 {
 		// Get value now so it doesn't change
-		inQueue = len(queue)
+		inQueue := len(queue)
 
 		// Iterate over all in the queue at the minute
 		for i := 0 ; i < inQueue; i++ {
-			word := queue[0]
+			vertex := queue[0]
 			queue = queue[1:] // 1 to end, so trim off the first
 
-			dict[word] = true
+			dict[vertex.word] = vertex
 
-			next := neighbours(dict, word)
+			if vertex.word == end {
+				x := dict[end].parent
 
-			for n := range next {
-				if n != end {
-					queue = append(queue,n)
-				} else {
-					
+				for x != start {
+					path = append(path, x)
+					x = dict[x].parent
 				}
-				
+				path = append(path, start)
+			} else {
+				next := neighbours(dict, vertex.word)
+				for n := range next {
+					queue = append(queue,dict[next[n]])
+				}
 			}
-			
 		}
-		
 	}
+
+	return path
 }

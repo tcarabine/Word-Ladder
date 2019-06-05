@@ -6,16 +6,16 @@ import (
 	"log"
 )
 
-func load(path string, length int) *map[string]bool {
+func load(path string, length int) map[string]node {
 	
-	file, err := os.Open(dictionaryPath)
+	file, err := os.Open(path)
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	defer file.Close()
 
-	dictionary := make(map[string][]bool)
+	dictionary := make(map[string]node)
 	scanner := bufio.NewScanner(file)
 
 	for scanner.Scan() {
@@ -23,10 +23,10 @@ func load(path string, length int) *map[string]bool {
 		if len(word) == length {
 			_,valid := dictionary[word]
 			if !valid {
-				dictionary[word] = false
+				dictionary[word] = node{"",word,false}
 			}
 		}
 	}
 
-	return &dictionary
+	return dictionary
 }

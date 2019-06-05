@@ -2,26 +2,36 @@ package main
 
 import (
 	"fmt"
-	"os"
-	"bufio"
-	"log"
-	"strings"
+	"time"
 )
 
-func main () {
+type node struct {
+	parent string
+	word string
+	visited bool
+}
 
-	dictionaryPath := "/workspaces/wordchain/data/dictionary.txt"
+func main () {
+	tStart := time.Now()
+
+	dictionaryPath := "/workspaces/Word-Ladder/data/dictionary.txt"
 	startWord := "cat"
-	//endWord := "dog"
+	endWord := "dog"
 	length := len(startWord)
 
-	dictionary := load(dictionaryPath)
+	dictionary := load(dictionaryPath, length)
 
-	allWords := make([]string, 0, len(dictionary))
-	for key := range dictionary {
-		allWords = append(allWords, key)
-	}
+	tElapsed := time.Since(tStart)
 
-	
+	fmt.Println("Loaded dictionary in ",tElapsed.String())
 
+	tStartBFS := time.Now()
+	path := bfs(dictionary,startWord,endWord)
+
+	fmt.Println("Got there in ", len(path))
+	fmt.Printf("%v\n", path)
+	tElapsedBFS := time.Since(tStartBFS)
+	fmt.Println("Found path in ",tElapsedBFS.String())
+	tTotal := time.Since(tStart)
+	fmt.Println("Total run time ", tTotal.String())
 }
