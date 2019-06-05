@@ -16,7 +16,7 @@ func bfs (dict map[string]node, start string, end string) []string {
 			vertex := queue[0]
 			queue = queue[1:] // 1 to end, so trim off the first
 
-			dict[vertex.word] = vertex
+			//dict[vertex.word] = vertex
 
 			if vertex.word == end {
 				x := dict[end].parent

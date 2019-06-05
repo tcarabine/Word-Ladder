@@ -9,7 +9,8 @@ func neighbours (dict map[string]node, word string) []string {
 	wordSlice := strings.Split(word, "")
 
 	for compare := range dict {
-		if word != compare {
+		//if word != compare {
+		if (word != compare) && !(dict[compare].visited) {
 
 			compareSlice := strings.Split(compare, "")
 			diff := 0
@@ -19,7 +20,9 @@ func neighbours (dict map[string]node, word string) []string {
 					diff++
 				}
 			}
-			if (diff == 1) && !(dict[compare].visited) {
+			//if (diff == 1) && !(dict[compare].visited) {
+			if (diff == 1)  {
+
 				// If there is only one letter different and the value in the dictionary is false - not visited, add to return slice
 				ret = append(ret,compare)
 				node := dict[compare]
