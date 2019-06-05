@@ -4,7 +4,7 @@ import (
 	"strings"
 )
 
-func neighbours (dict map[string]node, word string) []string {
+func neighbours (dict map[string]node, word string, end string) []string {
 	var ret []string
 	wordSlice := strings.Split(word, "")
 
@@ -29,6 +29,9 @@ func neighbours (dict map[string]node, word string) []string {
 				node.parent = word
 				node.visited = true
 				dict[compare] = node
+				if compare == end {
+					return append(make([]string,1),end)
+				}
 			}
 		}
 	}

@@ -15,7 +15,8 @@ type node struct {
 func main () {
 	tStart := time.Now()
 	
-	dictionaryPath := "/workspaces/Word-Ladder/data/dictionary.txt"
+	//dictionaryPath := "/workspaces/Word-Ladder/data/dictionary.txt"
+	dictionaryPath := "/workspaces/wordchain/data/dictionary.txt"
 
 	var startWord,endWord string
 	flag.StringVar(&startWord, "start", "sport", "Word to start search from")
