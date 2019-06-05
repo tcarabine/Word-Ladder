@@ -25,15 +25,18 @@ func bfs (dict map[string]node, start string, end string) []string {
 					path = append(path, x)
 					x = dict[x].parent
 				}
-				path = append(path, start)
+				return append(path, start)
 			} else {
-				next := neighbours(dict, vertex.word)
+				next := neighbours(dict, vertex.word, end)
 				for n := range next {
-					queue = append(queue,dict[next[n]])
+					if next[n] == end {
+						queue = append(make([]node,1),dict[next[n]])
+					} else {
+						queue = append(queue,dict[next[n]])
+					}
 				}
 			}
 		}
 	}
-
 	return path
 }

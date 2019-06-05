@@ -6,3 +6,23 @@ Given 2 words of equal length, starting with one and ending with the other, buil
 - cot
 - cog
 - dog
+
+## Running me
+
+### To Build
+
+```sh
+docker build -t wordchain:latest
+```
+
+### With defaults
+
+```sh
+docker run wordchain
+```
+
+### With custom search
+
+```sh
+docker run -e start=cat -e end=dog wordchain
+```

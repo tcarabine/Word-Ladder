@@ -15,7 +15,8 @@ type node struct {
 func main () {
 	tStart := time.Now()
 	
-	dictionaryPath := "/workspaces/Word-Ladder/data/dictionary.txt"
+	//dictionaryPath := "/workspaces/Word-Ladder/data/dictionary.txt"
+	dictionaryPath := "/workspaces/wordchain/data/dictionary.txt"
 
 	var startWord,endWord string
 	flag.StringVar(&startWord, "start", "sport", "Word to start search from")
@@ -33,7 +34,8 @@ func main () {
 
 	tStartBFS := time.Now()
 	path := bfs(dictionary,startWord,endWord)
-
+	tElapsedBFS := time.Since(tStartBFS)
+	
 	fmt.Println("Got there in ", len(path))
 
 	for i := 0; i < len(path)/2; i++ {
@@ -49,7 +51,7 @@ func main () {
 		}
 	}
 
-	tElapsedBFS := time.Since(tStartBFS)
+
 	fmt.Println("Found path in ",tElapsedBFS.String())
 	tTotal := time.Since(tStart)
 	fmt.Println("Total run time ", tTotal.String())
