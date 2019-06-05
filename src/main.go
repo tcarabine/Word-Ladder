@@ -34,7 +34,8 @@ func main () {
 
 	tStartBFS := time.Now()
 	path := bfs(dictionary,startWord,endWord)
-
+	tElapsedBFS := time.Since(tStartBFS)
+	
 	fmt.Println("Got there in ", len(path))
 
 	for i := 0; i < len(path)/2; i++ {
@@ -50,7 +51,7 @@ func main () {
 		}
 	}
 
-	tElapsedBFS := time.Since(tStartBFS)
+
 	fmt.Println("Found path in ",tElapsedBFS.String())
 	tTotal := time.Since(tStart)
 	fmt.Println("Total run time ", tTotal.String())
