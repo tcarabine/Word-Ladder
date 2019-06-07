@@ -16,11 +16,12 @@ func main () {
 	tStart := time.Now()
 	
 	//dictionaryPath := "/workspaces/Word-Ladder/data/dictionary.txt"
-	dictionaryPath := "/workspaces/wordchain/data/dictionary.txt"
+	//dictionaryPath := "/workspaces/wordchain/data/dictionary.txt"
 
-	var startWord,endWord string
+	var startWord,endWord,dictionaryPath string
 	flag.StringVar(&startWord, "start", "sport", "Word to start search from")
 	flag.StringVar(&endWord, "end", "crate", "Word to end on")
+	flag.StringVar(&dictionaryPath, "dictionary", "/workspaces/wordchain/data/dictionary.txt", "Dictionary path")
 
 	flag.Parse()
 
