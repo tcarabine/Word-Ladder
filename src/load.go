@@ -21,10 +21,10 @@ func load(path string, length int) map[string]node {
 	for scanner.Scan() {
 		word := scanner.Text()
 		if len(word) == length {
-			_,valid := dictionary[word]
-			if !valid {
+			// _,valid := dictionary[word]
+			// if !valid {
 				dictionary[word] = node{"",word,false}
-			}
+			//}
 		}
 	}
 
