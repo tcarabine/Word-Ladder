@@ -12,7 +12,7 @@ Given 2 words of equal length, starting with one and ending with the other, buil
 ### To Build
 
 ```sh
-docker build -t wordchain:latest
+docker build -t wordchain:latest .
 ```
 
 ### With defaults

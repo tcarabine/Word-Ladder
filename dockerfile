@@ -1,10 +1,14 @@
 FROM golang:alpine
 
-COPY ./src /go/src/word-ladder
+RUN apk update && apk add --no-cache git
+WORKDIR $GOPATH/src/word-ladder
+COPY ./src .
 COPY ./data /workspaces/wordchain/data
 
-RUN go get -d -v /go/src/word-ladder
-RUN go install -v /go/src/word-ladder
+RUN go get -d -v
+RUN GOOS=linux GOARCH=amd64 go build -ldflags="-w -s" -o /go/bin/word-ladder
+
+RUN cp /go/bin/word-ladder ./word-ladder
 
 ENV start="sport"
 ENV end="crate"
